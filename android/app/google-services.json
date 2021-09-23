@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "569304659832",
+    "project_id": "semesta-ban",
+    "storage_bucket": "semesta-ban.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569304659832:android:a96f4b41fdfdd851e6fa8d",
+        "android_client_info": {
+          "package_name": "com.example.semesta_ban_2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569304659832-564sgcs77v6svlgg6uunfki5eddib42v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPKLhdThD7CbA8wrFewmfjbqp3UlQ5Luc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569304659832-564sgcs77v6svlgg6uunfki5eddib42v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
