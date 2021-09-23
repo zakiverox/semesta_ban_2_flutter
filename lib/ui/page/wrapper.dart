@@ -3,7 +3,7 @@ part of 'page.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FirebaseUser firebaseuser = Provider.of<FirebaseUser>(context);
+    UserCredential firebaseuser = Provider.of<UserCredential>(context);
     if (firebaseuser == null) {
       if (!(prevPageEvent is GoToSpashEvent)) {
         prevPageEvent = GoToSpashEvent();
@@ -11,7 +11,7 @@ class Wrapper extends StatelessWidget {
       }
     } else {
       if (!(prevPageEvent is GoToMainEvent)) {
-        context.bloc<UserBloc>().add(LoadUser(firebaseuser.uid));
+        context.bloc<UserBloc>().add(LoadUser(firebaseuser.user.uid));
         prevPageEvent = GoToMainEvent();
         context.bloc<PageBloc>().add(prevPageEvent);
       }

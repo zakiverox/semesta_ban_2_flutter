@@ -6,9 +6,9 @@ class AuthServices {
   static Future<SignInResult> signUp(String email, String password, String name,
       List<String> selectedGenres, String selectedLanguage) async {
     try {
-      AuthResult result = await _auth.createUserWithEmailAndPassword(
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      User user = result.user.convertToUser(
+      Users user = result.convertToUser(
           name: name,
           selectedGenres: selectedGenres,
           selectedLanguage: selectedLanguage);
@@ -22,9 +22,9 @@ class AuthServices {
 
   static Future<SignInResult> sigIn(String email, String password) async {
     try {
-      AuthResult result = await _auth.signInWithEmailAndPassword(
+      UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      User user = await result.user.fromFirestore();
+      Users user = await result.fromFirestore();
       return SignInResult(user: user);
     } catch (e) {
       return SignInResult(message: e.toString().split(',')[1]);
@@ -35,11 +35,11 @@ class AuthServices {
     await _auth.signOut();
   }
 
-  static Stream<FirebaseUser> get userstream => _auth.onAuthStateChanged;
+  static Stream<User> get userstream => _auth.authStateChanges();
 }
 
 class SignInResult {
-  final User user;
+  final Users user;
   final String message;
 
   SignInResult({this.user, this.message});

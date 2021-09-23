@@ -17,7 +17,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     UserEvent event,
   ) async* {
     if (event is LoadUser) {
-      User user = await UserServices.getUser(event.id);
+      Users user = await UserServices.getUser(event.id);
       yield UserLoded(user);
     } else if (event is SignOut) {
       yield UserInitial();

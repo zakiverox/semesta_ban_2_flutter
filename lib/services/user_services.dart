@@ -11,7 +11,7 @@ class UserServices {
       genres += genre + ((genre != user.selectedGendres.last) ? ',' : '');
     }
 
-    _userCollection.document(user.id).setData({
+    _userCollection.doc(user.id).set({
       'email': user.email,
       'name': user.name,
       'balance': user.balance,
@@ -22,13 +22,13 @@ class UserServices {
   }
 
   static Future<Users> getUser(String id) async {
-    DocumentSnapshot snap = await _userCollection.document(id).get();
+    DocumentSnapshot snap = await _userCollection.doc(id).get();
 
     return Users(
       id,
-      snap.data['email'],
-      balance: snap.data['balance'],
-      name: snap.data['name'],
+      snap.get('email'),
+      balance: snap.get('balance'),
+      name: snap.get('name'),
     );
   }
 }

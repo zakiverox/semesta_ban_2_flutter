@@ -10,7 +10,7 @@ class UserInitial extends UserState {
 }
 
 class UserLoded extends UserState {
-  final User user;
+  final Users user;
   UserLoded(this.user);
   @override
   List<Object> get props => [];
