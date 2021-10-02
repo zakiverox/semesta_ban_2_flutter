@@ -16,11 +16,11 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     context
-        .bloc<ThemeBloc>()
+        .read<ThemeBloc>()
         .add(ChangeTheme(ThemeData().copyWith(primaryColor: maincolor)));
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToSpashEvent());
+        context.read<PageBloc>().add(GoToSpashEvent());
         return;
       },
       child: Scaffold(

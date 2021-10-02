@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,10 +10,11 @@ import 'package:semesta_ban_2/services/services.dart';
 
 import 'package:semesta_ban_2/ui/page/page.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
               builder: (_, themeState) => MaterialApp(
                   theme: themeState.themData,
                   debugShowCheckedModeBanner: false,
-                  home: Wrapper()))),
+                  home: SplashPage()))),
     );
   }
 }

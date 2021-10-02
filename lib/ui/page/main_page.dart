@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 part of 'page.dart';
 
 class MainPage extends StatefulWidget {
@@ -5,15 +7,18 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage>
+    with SingleTickerProviderStateMixin {
   int bottomNavBarIndex;
   PageController pageController;
+  TabController _tabController;
 
   @override
   void initState() {
     super.initState();
     bottomNavBarIndex = 0;
     pageController = PageController(initialPage: bottomNavBarIndex);
+    _tabController = TabController(length: 1, vsync: this);
   }
 
   @override
@@ -264,56 +269,43 @@ class _MainPageState extends State<MainPage> {
                     ),
                     Container(
                       color: Colors.white,
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      child: Text("Recommended Ban"),
+                      padding: EdgeInsets.all(5),
+                      width: MediaQuery.of(context).size.width,
+                      height: 40,
+                      child: Row(
+                        children: [
+                          Text('Ban Terbaru',
+                              style: blackTextFont.copyWith(
+                                  fontSize: 12, fontWeight: FontWeight.bold)),
+                          SizedBox(
+                              width:
+                                  MediaQuery.of(context).size.width / 2 + 10),
+                          Text('Lihat Semuah',
+                              style: orangeTextFont.copyWith(
+                                  fontSize: 10, fontWeight: FontWeight.bold)),
+                        ],
+                      ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    GridView.count(
-                      shrinkWrap: true,
-                      primary: false,
-                      crossAxisCount: 2,
-                      children: <Widget>[
-                        Container(
-                          color: Colors.yellowAccent,
-                          height: 400, // tambahkan property berikut
-                          child: Center(
-                            child: RecoCard(),
-                          ),
-                        ),
-                        Container(
-                          color: Colors.blueAccent,
-                          height: 400, // tambahkan property berikut
-                          child: Center(
-                            child: Text(
-                              "2",
-                              style: TextStyle(fontSize: 24.0),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          color: Colors.brown,
-                          height: 400, // tambahkan property berikut
-                          child: Center(
-                            child: Text(
-                              "3",
-                              style: TextStyle(fontSize: 24.0),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          color: Colors.orange,
-                          height: double.infinity, // tambahkan property berikut
-                          child: Center(
-                            child: Text(
-                              "4",
-                              style: TextStyle(fontSize: 24.0),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 600,
+                        color: Colors.white,
+                        padding: EdgeInsets.all(15),
+                        child: Expanded(
+                            child: ListView.builder(
+                                itemCount: (6.toDouble() / 2).toInt(),
+                                itemBuilder: (_, i) {
+                                  return Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      widgetCard(),
+                                      SizedBox(
+                                        width: 19,
+                                      ),
+                                      widgetCard(),
+                                    ],
+                                  );
+                                })))
                   ],
                 ),
               ],
