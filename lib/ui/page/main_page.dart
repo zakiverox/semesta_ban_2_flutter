@@ -11,14 +11,17 @@ class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
   int bottomNavBarIndex;
   PageController pageController;
-  TabController _tabController;
 
+  List images = [
+    'assets/banner.png',
+    'assets/video.png',
+    'assets/gojek.png',
+  ];
   @override
   void initState() {
     super.initState();
     bottomNavBarIndex = 0;
     pageController = PageController(initialPage: bottomNavBarIndex);
-    _tabController = TabController(length: 1, vsync: this);
   }
 
   @override
@@ -49,10 +52,20 @@ class _MainPageState extends State<MainPage>
                   children: [
                     SizedBox(height: 65),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                      height: 129,
+                      height: 210,
+                      width: MediaQuery.of(context).size.width,
                       color: Colors.amberAccent,
-                      child: Text("Banner"),
+                      child: CarouselSlider(
+                        items: images
+                            .map((image) => Image.asset(
+                                  image,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 210,
+                                  fit: BoxFit.contain,
+                                ))
+                            .toList(),
+                        options: CarouselOptions(),
+                      ),
                     ),
                     Container(
                         color: Colors.white,
@@ -288,11 +301,13 @@ class _MainPageState extends State<MainPage>
                     ),
                     Container(
                         width: MediaQuery.of(context).size.width,
-                        height: 600,
+                        height: 500,
                         color: Colors.white,
+                        margin: EdgeInsets.only(bottom: 13),
                         padding: EdgeInsets.all(15),
                         child: Expanded(
                             child: ListView.builder(
+                                shrinkWrap: true,
                                 itemCount: (6.toDouble() / 2).toInt(),
                                 itemBuilder: (_, i) {
                                   return Row(

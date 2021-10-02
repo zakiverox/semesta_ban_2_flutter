@@ -9,6 +9,7 @@ class widgetCard extends StatelessWidget {
       width: 162,
       height: 250,
       padding: EdgeInsets.symmetric(),
+      margin: EdgeInsets.only(bottom: 7),
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(13),
